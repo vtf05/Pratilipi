@@ -25,14 +25,14 @@ class ContentViewSet(viewsets.ModelViewSet):
         
         df = request.data['csv']
         df = pd.read_csv(df)
-        print(df)
-        
         for index, row in df.iterrows():
-            print(row)
             title = row['title']
             story = row['story']
             publish_date = row['publish_date'] 
-            publish_date = datetime.datetime.now()
+            d = int(str(publish_date[:2]))
+            m = int(str(publish_date[3:5]))
+            y = int(str(publish_date[6:]))
+            publish_date = datetime.date(y, m, d)
             Content.objects.create( title = title , story = story , publish_date = publish_date)
             ## here we can add some try catch blocks to resolve duplicate conflict
         return Response(status=status.HTTP_201_CREATED)

@@ -6,4 +6,4 @@ class Content(models.Model) :
     story = models.TextField(blank = False)
     likes  = models.IntegerField(default = 0 )
     reads  = models.IntegerField(default = 0 )
-    publish_date = models.DateTimeField( )
+    publish_date = models.DateField()
