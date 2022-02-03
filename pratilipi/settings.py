@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'Interaction_service',
     'user_service',
     'rest_framework',
+    'rest_framework_swagger',
+    'drf_yasg',
+    
 ]
 
 MIDDLEWARE = [
@@ -103,6 +106,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+REST_FRAMEWORK = {
+
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'  # <-- Here
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
