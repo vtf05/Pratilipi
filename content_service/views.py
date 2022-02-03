@@ -6,6 +6,7 @@ from .models import Content
 from rest_framework.decorators import action
 from rest_framework.response import Response
 import pandas as pd 
+from rest_framework import filters
 # importing datetime module
 import datetime
 from django.contrib.auth import get_user_model
@@ -16,7 +17,8 @@ class ContentViewSet(viewsets.ModelViewSet):
     queryset = Content.objects.all()
     serializer_class = ContentSerializer
     parser_classes = [parsers.MultiPartParser,parsers.FormParser]
-
+    filter_backends = [filters.OrderingFilter]
+    ordering_fields = ['publish_date', 'reads' ,"likes"]
 
     @action(detail=False, methods=['post'], name='POST CSV')
     def post_csv(self, request, *args, **kwargs):
